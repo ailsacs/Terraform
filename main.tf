@@ -18,16 +18,13 @@ resource "aws_instance" "dev" {
 resource "aws_instance" "dev_s3" {
   ami = "ami-026c8acd92418196b"
   instance_type = "t2.micro"
-  key_name = "challenges_aws"
-  tags = {
+  key_name = "challenges_aws"  tags = {
     Name = "dev_s3"
   }
 
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}"]
   depends_on = ["aws_s3_bucket.dev_s3"]
 }
-
-
 
 # creating security group.
 resource "aws_security_group" "acesso-ssh" {
